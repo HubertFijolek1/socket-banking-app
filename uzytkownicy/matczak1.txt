@@ -1,0 +1,8 @@
+{
+    "login": "matczak1",
+    "imie": "mateusz",
+    "nazwisko": "skowron",
+    "PESEL": "99887766775",
+    "nr_konta": "78126622",
+    "saldo": 0
+}
