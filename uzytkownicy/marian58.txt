@@ -2,7 +2,7 @@
     "login": "marian58",
     "imie": "marian",
     "nazwisko": "kowalski",
-    "PESEL": "00220304567",
+    "pesel": "00220304567",
     "nr_konta": "33003298",
     "saldo": 0
 }

@@ -1,0 +1,8 @@
+{
+    "login": "sylwunia",
+    "imie": "sylwia",
+    "nazwisko": "fiolek",
+    "pesel": "0099887743",
+    "nr_konta": "63906235",
+    "saldo": 7026581
+}

@@ -1,0 +1,8 @@
+{
+    "login": "czester",
+    "imie": "jan",
+    "nazwisko": "pawelczyk",
+    "pesel": "3322441199887",
+    "nr_konta": "07675712",
+    "saldo": 0
+}

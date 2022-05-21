@@ -1,0 +1,8 @@
+{
+    "login": "rafal33",
+    "imie": "rafal",
+    "nazwisko": "wolf",
+    "pesel": "66557744332",
+    "nr_konta": "64443255",
+    "saldo": 100
+}

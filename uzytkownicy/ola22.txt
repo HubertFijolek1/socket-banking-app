@@ -2,7 +2,7 @@
     "login": "ola22",
     "imie": "aleksandra",
     "nazwisko": "chmiel",
-    "PESEL": "00220980763",
+    "pesel": "00220980763",
     "nr_konta": "00439979",
     "saldo": 0
 }
