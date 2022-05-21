@@ -152,22 +152,27 @@ def tworzenie_nr_kont():
             numery_konta.append(liczba)
     return numery_konta
 
-numery_konta=tworzenie_nr_kont()
-lista = [f[:-4] for f in listdir('uzytkownicy/')]
+def main():
+    numery_konta=tworzenie_nr_kont()
+    lista = [f[:-4] for f in listdir('uzytkownicy/')]
+    login = input('Podaj nazwe uzytkownika: ')
+    if login in lista:
+        print(f'\nWitaj {login}. Oto twoje dane:')
+        with open(f'uzytkownicy/{login}.txt') as file:
+            js=json.loads(file.read())
+            for i in js:
+                print(i +": " +  str(js[i]))
+            login, imie, nazwisko, pesel, nr_konta, saldo=unpack_dict(**js)
+            konto(login, imie, nazwisko, pesel, nr_konta, saldo)   
+    else:
+        while True:
+            odp = input('Wygląda na to, że nie masz jeszcze u nas konta. \nCzy chcesz je stworzyć? tak/nie : ')
+            if odp == 'tak':
+                tworzenie_konta(numery_konta)    
+            elif odp == 'nie':
+                print('No dobra to nara.')
+            else:
+                print("Udziel poprawnej odpowiedzi :) ")
 
-login = input('Podaj nazwe uzytkownika: ')
-if login in lista:
-    print(f'\nWitaj {login}. Oto twoje dane:')
-    with open(f'uzytkownicy/{login}.txt') as file:
-        js=json.loads(file.read())
-        for i in js:
-            print(i +": " +  str(js[i]))
-        login, imie, nazwisko, pesel, nr_konta, saldo=unpack_dict(**js)
-        konto(login, imie, nazwisko, pesel, nr_konta, saldo)   
-else:
-    odp = input('Wygląda na to, że nie masz jeszcze u nas konta. \nCzy chcesz je stworzyć? tak/nie : ')
-    if odp == 'tak':
-        tworzenie_konta(numery_konta)    
-    elif odp == 'nie':
-        print('No dobra to nara.')
-
+if __name__ == "__main__":
+    main()
