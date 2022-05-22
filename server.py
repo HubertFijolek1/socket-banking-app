@@ -9,7 +9,6 @@ PORT = 33000
    Jezeli przekroczymy buffer po prostu utnie nam wiadomosc.'''
 BUFFER = 1024
 MSG_DISCONNECT = 'KONIEC'
-
 def handle_client(conn, addr):
    print(f'Nowe połączenie : {addr}')
 
@@ -50,18 +49,6 @@ def main():
       thread.start()
       print(f'AKTYWNE POŁĄCZENIA : {threading.active_count() - 1}')
 
-      
-      # print(f"Uzyskano polaczenie od {address[0]}:{address[1]}")
-
-      # '''Odbieramy wiadomosc od klienta.
-      #    Nalezy pamietac ze wiadomosc musimy zdekodowac.'''
-      # name = client_socket.recv(BUFFER).decode("utf8")
-
-      # print(f"[{address[0]}:{address[1]}]> Nazwa uzytkownika: {name}")
-
-      # '''Tworzymy oraz wysylamy do klienta wiadomosc(pamietamy o zakodowaniu'''
-      # msg = f"Witaj na serwerze, {name}!".encode('utf8')
-      # client_socket.send(msg)
 
 if __name__ == '__main__':
    main()

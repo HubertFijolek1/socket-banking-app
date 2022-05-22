@@ -1,0 +1,8 @@
+{
+    "login": "kacperek44",
+    "imie": "kacper",
+    "nazwisko": "plot",
+    "pesel": "99887766554",
+    "nr_konta": "97246524",
+    "saldo": 44
+}

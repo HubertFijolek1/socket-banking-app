@@ -4,5 +4,5 @@
     "nazwisko": "pasternak",
     "pesel": "00110011023",
     "nr_konta": "70237215",
-    "saldo": 800
+    "saldo": 516
 }
