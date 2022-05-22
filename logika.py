@@ -5,6 +5,7 @@ from os import listdir
 from sys import exit
 
 def jakie_mamy_nr_konta():
+    '''funkcja przechodzi przez wszystkie pliki z informacjami uzytkownikow i wypisuje ich login i numer konta'''
     print('\nOto spis uzytkownikow oraz ich kont, ktore mamy w systemie.')
     dirs = listdir('uzytkownicy/')
     for file in dirs:
@@ -16,25 +17,43 @@ def jakie_mamy_nr_konta():
                     login_nr_konta[js[i]] =  js['nr_konta']  
                     print(login_nr_konta)  
 
+def tworzenie_nr_kont():
+    '''tworzymy liste przechowujące unikalne numery konta'''
+    numery_konta = []
+    for _ in range(100):
+        liczba=''.join(random.choices(string.digits, k=8))
+        '''sprawdzamy czy wygenerowana liczba nie jest juz dodana do naszej listy'''
+        if liczba not in numery_konta:
+            numery_konta.append(liczba)
+    return numery_konta
+
 def rozpakowanie_slownika(login, imie, nazwisko, pesel, nr_konta, saldo):
     return (login, imie, nazwisko, pesel, nr_konta, saldo)
 
 def tworzenie_konta(numery_konta):
+    '''Jezeli nie ma danego loginu w bazie uzytkownikow oraz uzytkownik wyraza chec zalozenia konta 
+    to zaczyna sie proces wprowadzania danych oraz walidacji tych danych. 
+    Funkcja przyjmuje parametr numery konta(jest to lista unikalnych numerow kont,wygenereowanych dzieki
+    funkcji tworzenie_nr_kont())
+    '''
     while True:
         login2 = {}
         login2['login'] = input('Podaj nazwę użytkownika: ')
-        login2['imie'] = input('Podaj swoje imię: ')
+
+        login2['imie'] = input('Podaj swoje imię: ')    
         if login2['imie'].isalpha():
             pass
         else:
             print('Imie moze zawierac tylko litery. Sprobuj jeszcze raz')
             tworzenie_konta(numery_konta)
+
         login2['nazwisko'] = input('Podaj swoje nazwisko: ')
         if login2['nazwisko'].isalpha():
             pass
         else:
             print('Nazwisko moze zawierac tylko litery. Sprobuj jeszcze raz')
             tworzenie_konta(numery_konta)
+
         login2['pesel'] = input('Podaj swój PESEL (pamietaj ze musi skladac sie z 11 cyfr): ')
         if login2['pesel'].isdigit:
             if len(login2['pesel']) > 11 :
@@ -48,8 +67,10 @@ def tworzenie_konta(numery_konta):
         else:
             print("Pesel moze zawierac tylko cyfry")
             tworzenie_konta(numery_konta)
+        '''przypisujemy wygenerowany wczesniej numer konta do uzytkownika'''    
         login2['nr_konta'] = numery_konta.pop()
         login2['saldo'] = 0
+        '''tworzymy nowy plik w katalogu uzytkownicy ktore bedzie przechowywal zgromadzone dane o uzytkowniku'''
         with open(f'uzytkownicy/{login2["login"]}.txt', 'w') as file:
             file.write(json.dumps(login2, indent = 4))
             login, imie, nazwisko, pesel, nr_konta, saldo=rozpakowanie_slownika(**login2)
@@ -60,6 +81,7 @@ def tworzenie_konta(numery_konta):
         konto(login, imie, nazwisko, pesel, nr_konta, saldo)
 
 def zmiana_salda(login, imie, nazwisko, pesel, nr_konta, saldo):
+    'funkcja polegajaca na zmianie salda uzywana podczas wplaty, wyplaty oraz przelewu pieniedzy'
     login2 = {}
     login2['login'] = login
     login2['imie'] = imie
@@ -72,6 +94,7 @@ def zmiana_salda(login, imie, nazwisko, pesel, nr_konta, saldo):
         login, imie, nazwisko, pesel, nr_konta, saldo= rozpakowanie_slownika(**login2)
 
 def konto(login, imie, nazwisko, pesel, nr_konta, saldo):
+    '''funkcja zawierajaca glowna logike w ktorej uzytkownik moze wykonywac rozne czynnosci takie jak wplata, wyplata, przelew, sprawdzenie salda '''
     wybor = input('\nCo zamierzasz zrobic? \n0 - Wyjdz \n1 - przelew na inne konto \n2 - wyplacenie środków \n3 - dokonanie wpłaty \n4 - sprawdzenie stanu konta\n5 - sprawdzenie danych uzytkownika\n')
     while True:
         if wybor =='0':
@@ -163,15 +186,6 @@ def konto(login, imie, nazwisko, pesel, nr_konta, saldo):
         else:
             print('Stosuj sie do instrukcji :)')
             konto(login, imie, nazwisko, pesel, nr_konta, saldo)
-def tworzenie_nr_kont():
-    '''tworzymy liste przechowujące unikalne numery konta'''
-    numery_konta = []
-    for i in range(100):
-        liczba=''.join(random.choices(string.digits, k=8))
-        '''sprawdzamy czy wygenerowana liczba nie jest juz dodana do naszej listy'''
-        if liczba not in numery_konta:
-            numery_konta.append(liczba)
-    return numery_konta
 
 def main2():
     numery_konta=tworzenie_nr_kont()
