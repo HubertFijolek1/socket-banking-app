@@ -1,48 +1,56 @@
-import socket as s
+import socket
+from functions import *
+from sys import exit
 
-'''tworzymy zmienne przechowujace ip oraz port zeby polaczyc sie z serwerem'''
-HOST = s.gethostbyname(s.gethostname())
-PORT = 33000
+welcome_menu = """Welcome to the best bank. How can i help you?
+    0 - Exit(Wyjscie)
+    1 - Sign Up(Zarejestruj sie)
+    2 - Sign In(Zaloguj sie) 
+    """
 
-'''Bufer jest to ilosc bitow z jaką odbieramy wiadomość.
-   Jezeli przekroczymy bufer po prostu utnie nam wiadomosc.'''
-BUFFER = 1024
+client_menu = """Select what you want to do:
+    0 - Disconnect
+    1 - Bank balance 
+    2 - Pay in money
+    3 - Withdraw money
+    4 - Tranfer money to another account 
+    """
 
-MSG_DISCONNECT = 'KONIEC'
+
+FORMAT = 'utf-8'
+DISCONNECT_MESSAGE = "0"
+HEADER = 1024
+PORT = 1987
+SERVER = socket.gethostbyname(socket.gethostname())
+ADDRESS = (SERVER, PORT)
+logged_in = False
 
 
-def main():
-   client = s.socket(s.AF_INET, s.SOCK_STREAM)
-   client.connect((HOST, PORT))
-   print(f'Klient połączył się z serwerem ({HOST}:{PORT})')
 
-   connected = True
-   while connected:
-      msg = input("> ")
-      client.send(msg.encode('utf8'))
-      
-      if msg == MSG_DISCONNECT:
-         connected = False
-      else:
-         msg = client.recv(BUFFER).decode('utf8')
-         print(f'Serwer: {msg}')
-if __name__ == "__main__":
-   main()
+client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+client.connect(ADDRESS)
 
-# '''tworzymy obiekt socket z argumentami - AF-INET(jest to rodzina adresow ipv4)
-#    oraz SOCK_STREAM(jes to strumien przesylu danych dla socketa)'''
-# client_socket = s.socket(s.AF_INET, s.SOCK_STREAM)
+def send(msg):
+    message = msg.encode(FORMAT)
+    msg_length = len(message)
+    send_length = str(msg_length).encode(FORMAT)
+    send_length += b' ' * (HEADER - len(send_length))
+    client.send(send_length)
+    client.send(message)
+    msg_server = client.recv(2048).decode(FORMAT)
+    print(msg_server)
+    if msg_server == "Successfully logged in":
+        print(client_menu)
+    
+disconnect = True
 
-# '''connect() sluzy do laczenia ze zdalnym adresem serwera'''
-# client_socket.connect((HOST,PORT))
-
-# '''tworzymy zmienna ktora bedzie przechowywac imie klienta.
-#    Informacje przekazywane przez sockety trzeba zakodowac w jakims formacie.
-#    W naszym przypadku jest to utf-8'''
-# name = input('Twoje imie: ').encode("utf8")
-
-# '''Wysylamy nazwe klienta do serwera'''
-# client_socket.send(name)
-
-# '''Otrzymujemy wiadomosc zwrotna od serwera'''
-# print(client_socket.recv(BUFFER).decode("utf8"))
+print(welcome_menu)
+while  disconnect:
+    
+    msg = input(">>>:")
+    if msg == "0":
+        disconnect = False
+        send("The user has decided to stop using of the program")
+        exit()
+    else:
+        send(msg)

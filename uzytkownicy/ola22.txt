@@ -1,8 +1,0 @@
-{
-    "login": "ola22",
-    "imie": "aleksandra",
-    "nazwisko": "chmiel",
-    "pesel": "00220980763",
-    "nr_konta": "00439979",
-    "saldo": 234
-}

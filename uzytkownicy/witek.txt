@@ -1,8 +1,0 @@
-{
-    "login": "witek",
-    "imie": "wieslaw",
-    "nazwisko": "norek",
-    "pesel": "33442211234",
-    "nr_konta": "01912632",
-    "saldo": 0
-}

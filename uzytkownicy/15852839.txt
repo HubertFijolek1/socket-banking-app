@@ -1,0 +1,8 @@
+{
+    "imie": "sylwia",
+    "nazwisko": "witek",
+    "haslo": "1234",
+    "pesel": "1122334456",
+    "numer_klienta": "15852839",
+    "saldo": 50
+}

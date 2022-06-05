@@ -1,8 +1,0 @@
-{
-    "login": "stefcio",
-    "imie": "stefan",
-    "nazwisko": "stefanski",
-    "pesel": "99999999999",
-    "nr_konta": "43312865",
-    "saldo": 283334
-}

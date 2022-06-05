@@ -1,0 +1,8 @@
+{
+    "imie": "Stanislaw",
+    "nazwisko": "lawenda",
+    "haslo": "123",
+    "pesel": "09876543212",
+    "numer_klienta": "55126939",
+    "saldo": 0
+}

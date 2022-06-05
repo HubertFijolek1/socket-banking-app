@@ -1,8 +1,0 @@
-{
-    "login": "filipek",
-    "imie": "filip",
-    "nazwisko": "kot",
-    "pesel": "54367865430",
-    "nr_konta": "51713154",
-    "saldo": 50250
-}

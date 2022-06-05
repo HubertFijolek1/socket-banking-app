@@ -1,0 +1,8 @@
+{
+    "imie": "Stasiu",
+    "nazwisko": "Cash",
+    "haslo": "123",
+    "pesel": "098765432123",
+    "numer_klienta": "58901778",
+    "saldo": 0
+}

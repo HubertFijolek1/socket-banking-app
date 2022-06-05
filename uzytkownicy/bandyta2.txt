@@ -1,8 +1,0 @@
-{
-    "login": "bandyta2",
-    "imie": "robert",
-    "nazwisko": "lewandowski",
-    "pesel": "00220022080",
-    "nr_konta": "91361092",
-    "saldo": 0
-}

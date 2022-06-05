@@ -1,8 +1,0 @@
-{
-    "login": "januszek4",
-    "imie": "janusz",
-    "nazwisko": "tracz",
-    "pesel": "55544433301",
-    "nr_konta": "82628685",
-    "saldo": 0
-}

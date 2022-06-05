@@ -1,0 +1,8 @@
+{
+    "imie": "stefan",
+    "nazwisko": "maruka",
+    "haslo": "123",
+    "pesel": "00998877665",
+    "numer_klienta": "32305043",
+    "saldo": 0
+}
